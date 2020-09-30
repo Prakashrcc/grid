@@ -1,0 +1,32 @@
+
+.slds-grid_frame{
+    min-height: 105px;
+    min-width: 200px;
+    font-family: arial;
+    background-color: white;
+}
+.slds-box :hover{
+   
+}
+.slds-grid{
+    padding: .5%;
+    
+}
+.slds-text-title_bold{
+    font-size: 13px;
+}
+.h3{
+    font-size: 8px;
+    line-height: normal;
+    margin-left: 10%;
+}
+.pipeline{
+    margin-left: 10%;
+    width: 100px;
+    height: 4px;
+    border-radius: 1px;
+    background-color: #26547c;
+}
+.slds-size_12-of-12{
+    width:90%;
+}

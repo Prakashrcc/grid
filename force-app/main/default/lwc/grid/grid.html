@@ -1,0 +1,46 @@
+<template>
+  <div class="slds-grid_frame">
+  <div class="slds-grid ">
+    <div class="slds-col slds-size_12-of-12">
+      <div class="slds-grid ">
+        <div class="slds-col slds-size_1-of-12">
+          <h2 class="h2">BUYING CENTRES</h2>
+        </div>
+        <div class="slds-col slds-size_11-of-12">
+          <h2 class="h21">OFFERINGS</h2>
+          <div class="slds-grid slds-scrollable" style="height:450px; width:800px;">
+            <div class="slds-col slds-size_1-of-12" style="position: sticky; left: 0;border:none;">
+              <template iterator:it={offeringList} >
+                <div key={offering} class="slds-col slds-size_12-of-12" style="height:109px;background: white;">
+                  <h4 style="text-align: center;padding-top: 70%;height: 105px;">India</h4>
+                </div>
+              </template>
+            </div>
+            <div class="slds-col slds-size_11-of-12" style="height: fit-content;width:fit-content">
+              <div class="slds-grid" style="height:40px;position: sticky; top: 0;" >
+                <template iterator:it={offeringList} >
+                <div key={offering} class="slds-col " style="height:40px;background: white;
+                text-align: center;">
+                  <h4 style="width: 203px;margin: .5%;">Design</h4>
+                </div>
+              </template>
+              </div>
+              <template iterator:it={offeringList} >
+                <div key={buying} class="slds-grid" style="height:109px; ">
+                  <template iterator:it={buyingList} >
+                    <div key={buying} class="slds-col slds-size_2-of-12 b1" style="height:105px;width:200px;margin-right: 3px;">
+                      <c-white-Space></c-white-Space>
+                    </div>
+                  </template>
+                </div>
+              </template>
+               
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </template>
