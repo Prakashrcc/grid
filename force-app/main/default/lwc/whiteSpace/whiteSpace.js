@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { LightningElement , api} from 'lwc';
 import My_Resource from '@salesforce/resourceUrl/images';
 
 const COUNT_ABBRS = [ '', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y' ];
@@ -11,23 +11,27 @@ export default class WhiteSpace extends LightningElement {
     bulleyeImgUrl = My_Resource+'/images/bull-eye/img.png';
 
     //variables
-    space='WHITESPACE';
-    pipelineTotal = 800000;
-    winsTotal = 600000;
-    lossesTotal = 200000;
-    targetTotal = 400000;
+    @api space='WHITESPACE';
+    @api pipelineTotal = '800000';
+    @api winsTotal = '600000';
+    @api lossesTotal = '200000';
+    @api targetTotal = '400000';
     acheivedPercentage = 0;
-    competitor = true;
-    strategy = true;
-    task = true;
+    @api competitor = 'false';
+    @api strategy = 'false';
+    @api task = 'false';
 
     //Changing it to K,M etc
-    pipelineAmount = this.intToString(this.pipelineTotal,2);
-    winsAmount = this.intToString(this.winsTotal,2);
-    lossesAmount = this.intToString(this.lossesTotal,2);
-    targetAmount = this.intToString(this.targetTotal,2);
+    pipelineAmount = 0;
+    winsAmount = 0;
+    lossesAmount = 0;
+    targetAmount = 0;
 
     renderedCallback(){
+        this.pipelineAmount = this.intToString(this.pipelineTotal,2);
+        this.winsAmount = this.intToString(this.winsTotal,2);
+        this.lossesAmount = this.intToString(this.lossesTotal,2);
+        this.targetAmount = this.intToString(this.targetTotal,2);
         this.pipelineBarCalculator();
         this.winsBarCalculator();
         this.lossesBarCalculator();
@@ -105,17 +109,17 @@ export default class WhiteSpace extends LightningElement {
         }
     }
     competitorChecker(){
-        if(this.competitor == false){
+        if(this.competitor == 'false'){
             this.template.querySelector('[data-id="starImg"]').style.opacity = "10%";
         }
     }
     strategyChecker(){
-        if(this.strategy == false){
+        if(this.strategy == 'false'){
             this.template.querySelector('[data-id="bulbImg"]').style.opacity = "10%";
         }
     }
     taskChecker(){
-        if(this.task == false){
+        if(this.task == 'false'){
             this.template.querySelector('[data-id="taskImg"]').style.opacity = "10%";
         }
     }

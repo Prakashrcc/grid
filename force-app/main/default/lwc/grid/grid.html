@@ -7,16 +7,16 @@
           <h2 class="h2">BUYING CENTRES</h2>
         </div>
         <div class="slds-col slds-size_11-of-12">
-          <h2 class="h21">OFFERINGS</h2>
-          <div class="slds-grid slds-scrollable" style="height:450px; width:800px;">
-            <div class="slds-col slds-size_1-of-12" style="position: sticky; left: 0;border:none;">
+          <h2 data-id="header" class="h21">OFFERINGS</h2>
+          <div data-id="container" class="slds-grid slds-scrollable" style="height:450px; width:90%;margin-top:1%;">
+            <div data-id="left-container" class="slds-col slds-size_1-of-12 left-container" >
               <template iterator:it={offeringList} >
                 <div key={offering} class="slds-col slds-size_12-of-12" style="height:109px;background: white;">
-                  <h4 style="text-align: center;padding-top: 70%;height: 105px;">India</h4>
+                  <h4 style="text-align: center;padding-top: 50%;height: 105px;">India</h4>
                 </div>
               </template>
             </div>
-            <div class="slds-col slds-size_11-of-12" style="height: fit-content;width:fit-content">
+            <div data-id="card-container" class="slds-col slds-size_11-of-12" style="height: fit-content;width:fit-content">
               <div class="slds-grid" style="height:40px;position: sticky; top: 0;" >
                 <template iterator:it={offeringList} >
                 <div key={offering} class="slds-col " style="height:40px;background: white;
@@ -29,13 +29,11 @@
                 <div key={buying} class="slds-grid" style="height:109px; ">
                   <template iterator:it={buyingList} >
                     <div key={buying} class="slds-col slds-size_2-of-12 b1" style="height:105px;width:200px;margin-right: 3px;">
-                      <c-white-Space></c-white-Space>
+                      <c-white-Space pipeline-total="800000" wins-total="600000" losses-total="200000" target-total="400000" competitor="true" strategy="false" task="false"></c-white-Space>
                     </div>
                   </template>
                 </div>
               </template>
-               
-              
             </div>
           </div>
         </div>

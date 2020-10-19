@@ -24,6 +24,7 @@
     padding-bottom: 1%;
     font-size: 13px;
     font-weight: bolder;
+    padding-top: 1%;
 }
 .slds-grid_frame{
     min-height: 200px;
@@ -57,4 +58,11 @@
   }
   .slds-size_2-of-12{
       background:white;
+  }
+  .left-container{
+    position: sticky;
+    left: 0;
+    border:none;
+    margin-top: 0;
+    padding-top: 40px;
   }
