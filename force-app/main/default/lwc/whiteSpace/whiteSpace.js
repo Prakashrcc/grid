@@ -1,4 +1,4 @@
-import { LightningElement , api} from 'lwc';
+import { LightningElement , api, track} from 'lwc';
 import My_Resource from '@salesforce/resourceUrl/images';
 
 const COUNT_ABBRS = [ '', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y' ];
@@ -11,27 +11,39 @@ export default class WhiteSpace extends LightningElement {
     bulleyeImgUrl = My_Resource+'/images/bull-eye/img.png';
 
     //variables
-    @api space='WHITESPACE';
-    @api pipelineTotal = '800000';
-    @api winsTotal = '600000';
-    @api lossesTotal = '200000';
-    @api targetTotal = '400000';
+    @api space='';
+    @api pipelineTotal = '0';
+    @api winsTotal = '0';
+    @api lossesTotal = '0';
+    @api targetTotal = '0';
     acheivedPercentage = 0;
     @api competitor = 'false';
     @api strategy = 'false';
     @api task = 'false';
-
+    @api landscapeValues ;
+    @api buying;
+    @api offering;
+    @api sym;
+    
+    key;
+    opportunity;
+    
     //Changing it to K,M etc
     pipelineAmount = 0;
     winsAmount = 0;
     lossesAmount = 0;
     targetAmount = 0;
+    sign = 'rs';
 
     renderedCallback(){
+        
+        this.valueSetter();
         this.pipelineAmount = this.intToString(this.pipelineTotal,2);
         this.winsAmount = this.intToString(this.winsTotal,2);
         this.lossesAmount = this.intToString(this.lossesTotal,2);
         this.targetAmount = this.intToString(this.targetTotal,2);
+        this.sign = this.sym;
+        console.log(this.sym);
         this.pipelineBarCalculator();
         this.winsBarCalculator();
         this.lossesBarCalculator();
@@ -41,6 +53,20 @@ export default class WhiteSpace extends LightningElement {
         this.competitorChecker();
         this.strategyChecker();
         this.taskChecker();
+        
+        
+    }
+    valueSetter(){ 
+        this.key = this.buying + this.offering;
+        if(this.landscapeValues[this.key] != undefined){
+            this.winsTotal = this.landscapeValues[this.key].winsTotal;
+            this.lossesTotal = this.landscapeValues[this.key].lossesTotal;
+             this.pipelineTotal = this.landscapeValues[this.key].pipelineTotal;
+             this.opportunity = 'true';
+        }
+        else{
+            this.opportunity = 'false';
+        }
         
     }
     pipelineBarCalculator(){
@@ -112,15 +138,24 @@ export default class WhiteSpace extends LightningElement {
         if(this.competitor == 'false'){
             this.template.querySelector('[data-id="starImg"]').style.opacity = "10%";
         }
+        if(this.opportunity == 'false'){
+            this.template.querySelector('[data-id="starImg"]').style.opacity = "0%";
+        }
     }
     strategyChecker(){
         if(this.strategy == 'false'){
             this.template.querySelector('[data-id="bulbImg"]').style.opacity = "10%";
         }
+        if(this.opportunity == 'false'){
+            this.template.querySelector('[data-id="bulbImg"]').style.opacity = "0%";
+        }
     }
     taskChecker(){
         if(this.task == 'false'){
             this.template.querySelector('[data-id="taskImg"]').style.opacity = "10%";
+        }
+        if(this.opportunity == 'false'){
+            this.template.querySelector('[data-id="taskImg"]').style.opacity = "0%";
         }
     }
     intToString(count, withAbbr = false, decimals = 2) {
@@ -133,7 +168,10 @@ export default class WhiteSpace extends LightningElement {
         return result;
     }
     percentCalculator(amount1,amount2){
-        this.percent = ((amount1/amount2)*100)%100;
+        this.percent = ((amount1/amount2)*100);
+        if(this.percent > 100){
+            this.percent = 100;
+        }
         return this.percent;
     } 
 }
